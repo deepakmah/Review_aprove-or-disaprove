@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Newsletter\Model\Subscriber">
+        <plugin name="disable_newsletter_success" type="Exinent\DisableNewsletterSuccess\Plugin\Newsletter\Model\Subscriber" />
+    </type>
+    <type name="Exinent\DisableNewsletterSuccess\Observer\ReviewObserver">
+        <arguments>
+            <argument name="scopeConfig" xsi:type="object">Magento\Framework\App\Config\ScopeConfigInterface</argument>
+            <argument name="logger" xsi:type="object">Psr\Log\LoggerInterface</argument>
+            <argument name="transportBuilder" xsi:type="object">Magento\Framework\Mail\Template\TransportBuilder</argument>
+            <argument name="productRepository" xsi:type="object">Magento\Catalog\Api\ProductRepositoryInterface</argument>
+            <argument name="reviewFactory" xsi:type="object">Magento\Review\Model\ReviewFactory</argument>
+            <argument name="storeManager" xsi:type="object">Magento\Store\Model\StoreManagerInterface</argument>
+            <argument name="resource" xsi:type="object">Magento\Framework\App\ResourceConnection</argument>
+        </arguments>
+    </type>
+</config>

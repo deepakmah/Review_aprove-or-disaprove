@@ -1,0 +1,76 @@
+<!--@subject {{trans "New Review has been submitted on %product_name" product_name=$product_name  uname=$uname}} @-->
+<!--@vars {
+"var store.getFrontendName()":"Store Name",
+"var customer.name":"Customer Name",
+"var administrator_name":"Administrator Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "Hello <b>%administrator_name</b>," administrator_name=$administrator_name|row}}</p>
+
+<p>{{trans 'The customer <!--named <b>%uname</b>--> just submitted a review on  %store_name:' uname=$uname store_name=$store.getBaseUrl()|row}}</p>
+
+<table style="width: 750px;border-collapse: collapse;margin:50px auto;" border="1px">
+  <tr style="background: #eee;">
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><b>Review ID</b></td>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'>{{var review_id}}</td>
+  </tr>
+  <tr>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><b>SKU</b></td>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'>{{var sku}}</td>
+  </tr>
+  <tr style="background: #eee;">
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><b>Product</b></td>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><a href="{{var prodlink}}">{{var product_name}}</a></td>
+  </tr>
+  <tr>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><b>Review Summary</b></td>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'>{{var rtitle}}</td>
+  </tr>
+  <tr style="background: #eee;">
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><b>Review Detail</b></td>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><q>{{var rdetail}}</q></td>
+  </tr>
+  <tr>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'><b>Date & Time</b></td>
+    <td style='padding: 10px;border: 1px solid #ccc;text-align: left;font-size: 18px;'>{{var rdate}}</td>
+  </tr>
+
+  <tr>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left; font-size: 18px;">
+        <b>Actions</b>
+    </td>
+    <td style="padding: 10px; border: 1px solid #ccc; text-align: left; font-size: 18px;">
+        <a href="{{var approve_link}}" 
+           style="
+               display: inline-block;
+               background-color: #4CAF50; 
+               color: #ffffff;
+               padding: 10px 20px;
+               text-decoration: none;
+               border-radius: 5px;
+               font-weight: bold;
+           ">
+           ✅ Approve
+        </a>
+
+        <a href="{{var disapprove_link}}" 
+           style="
+               display: inline-block;
+               background-color: #b11f11; 
+               color: #ffffff;
+               padding: 10px 20px;
+               text-decoration: none;
+               border-radius: 5px;
+               margin-left: 10px;
+               font-weight: bold;
+           ">
+           ❌ Disapprove
+        </a>
+    </td>
+</tr>
+
+</table>
+
+{{template config_path="design/email/footer_template"}}
